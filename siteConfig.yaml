@@ -1,0 +1,102 @@
+meta:
+  title: Redocly Training
+  description: The best API documentation generator ever.
+  siteUrl: https://portal-demo.redoc.ly
+headerIcon: ./images/logo.png
+enableToc: true
+oasDefinitions:
+  petstore: ./api/public/petstore.oas.yaml
+  partner-a: ./api/partner/partner-a.oas.yaml
+  partner-b: ./api/partner/partner-b.oas.yaml
+  internal-a: ./api/internal/internal-a.oas.yaml
+  internal-b: ./api/internal-restricted/internal-b.oas.yaml
+stylesheets:
+  - https://fonts.googleapis.com/css?family=Roboto:300,400,600,700
+  - https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap
+licenseKey: eyJ0Ijp0cnVlLCJpIjoxNjAyNzUxODEzLCJlIjoxNjA2Njk0NDAwLCJoIjp0cnVlLCJzIjoicG9ydGFsIn0=.IJYXW/7HyZwKGplBIyq1MNHXRTEBoRycqLGFzQpVwmMNWM56ErK5iRZiHcqvCCdnfKV231d9WEEZhwzsK5iKKA==
+nav:
+  - label: APIs
+    page: api/index.md
+  - label: Setup
+    permission: anonymous
+    page: developer-portal/setup.md
+
+  - label: Training exercises
+    page: developer-portal/index.md
+
+  - label: Support
+    permission: 'read:partner'
+    page: support/index.md
+
+  - label: External docs
+    href: https://docs.redoc.ly/developer-portal/introduction/
+
+  - search: true
+
+#ga:
+  # you can use any options here from https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/
+  # note that GA doesn't work in DEV
+#  trackingId: UA-45997213-1
+#scripts:
+#  - ./static/intercom.js
+
+footer:
+  copyrightText: Copyright © Redocly 2019-2020. All right reserved.
+  columns:
+    - group: Legal
+      items:
+        - label: Terms of Use
+          href: 'https://redoc.ly/subscription-agreement/'
+        - label: Privacy Notice
+          href: 'https://redoc.ly/privacy-policy/'
+        - label: Cookie Notice
+          href: 'https://redoc.ly/privacy-policy/'
+    - group: Support
+      items:
+        - label: FAQ
+          page: faq.md
+        - label: Contact us
+          page: contact.mdx
+    - group: Useful
+      items:
+        - label: Setup
+          page: developer-portal/setup.md
+        - label: API Catalog
+          page: api/index.md
+    - group: clientSecret
+      permission: 'read:partner'
+      items:
+        - label: Setup
+          page: developer-portal/setup.md
+        - label: API Catalog
+          page: api/index.md
+
+auth:
+  claimsPreprocessor: claims.js
+  idps:
+    main:
+      type: oidc
+      loginWith: OIDC
+      configurationUrl: https://redoc-ly.auth0.com/.well-known/openid-configuration
+      clientId: R9U3Ue62VhrGvtj2qYpVJQO91rdKkqF4
+      clientSecret: "{{process.env.AUTH0_CLIENT_SECRET}}"
+      scopes:
+        - openid
+        - name
+        - family_name
+        - email
+        - email_verified
+        - identities
+        - picture
+        - phone
+        - nickname
+        - profile
+        - given_name
+        - created_at
+        - address
+        - offline_address
+        - roles
+        - scope
+  globalAuthRequirement: public
+  allowLoginWith: main
+  accessForbiddenBehavior: redirectToIdp
