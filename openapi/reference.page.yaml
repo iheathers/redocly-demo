@@ -1,0 +1,11 @@
+label: Petstore API reference
+type: redoc
+definitionId: petstore
+showInfo: true
+expand: false
+settings:
+  generateCodeSamples:
+    languages:
+      - lang: curl
+      - lang: JavaScript
+      - lang: Node.js
